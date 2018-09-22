@@ -34,3 +34,15 @@ export const fetchMovieById = async id => {
     console.log(error);
   }
 };
+
+export const fetchMoviePosters = async movieId => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${API_KEY}&language=en-US&include_image_language=en`
+    );
+    const moviePosters = await response.json();
+    return moviePosters.posters;
+  } catch (error) {
+    console.log(error);
+  }
+};

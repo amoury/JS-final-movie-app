@@ -268,3 +268,16 @@ POPULAR MOVIES
   margin: 10px;
   cursor: pointer;
 }
+
+
+#tab_one,
+#tab_two,
+#tab_three {
+  display: none;
+}
+
+#tab_one.display_tab,
+#tab_two.display_tab,
+#tab_three.display_tab {
+  display: unset;
+}

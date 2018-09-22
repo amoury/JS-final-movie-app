@@ -1,6 +1,6 @@
 import { cleanURL, getIdFromURL } from './utils';
 import { loadMovies, getMoviePage } from './views';
-import { fetchMovieById } from './model';
+// import { fetchMovieById } from './model';
 /**
  * Function reponsible for Active Tabs Underline
  */
@@ -29,6 +29,9 @@ const updateNav = () => {
   }
 }
 
+
+
+
 const changePage = (id) => {
   if(id) {
     history.pushState(null, null, `${window.location.origin}/${id}`)
@@ -53,14 +56,30 @@ const handleSlideLine = () => {
   slideLine.style.left = `${ItemBounds.left}px`;
 }
   
+
+
+
+
 /**
  * This function handles the tab click event
  */
 const handleTabClick = () => {
-  const TabItems = document.querySelectorAll('.tabs_item');
   const links = document.querySelectorAll('.tabs_item a');
 
-
+  const toggleTabs = href => {
+    switch (href) {
+      case "#tab_one":
+        handleTabContent(href);
+        changePage();
+        break;
+      case "#tab_two":
+      case "#tab_three" :
+        handleTabContent(href);
+      default:
+        break;
+    }
+  }
+  
   const setActiveClass = event => {
     event.preventDefault();
     for (let item of links) {
@@ -69,11 +88,10 @@ const handleTabClick = () => {
     event.target.classList.add('active');
     handleSlideLine();
     const href = event.target.hash;
-    if(href === '#tab_one') {
-      changePage();
-    }
-    console.log(document.querySelector(href));
+
+    toggleTabs(href);
   } 
+
 
   links.forEach( item => {
     item.addEventListener('click', setActiveClass);
@@ -81,6 +99,18 @@ const handleTabClick = () => {
 
 }
 
+
+const handleTabContent = (tabId) => {
+  const contentTabs = document.querySelectorAll('.content_tab');
+  const activeTab = document.querySelector(tabId);
+
+  for (let contentTab of contentTabs) {
+    contentTab.classList.remove('display_tab');
+  }
+  activeTab.classList.add('display_tab')
+
+
+}
 
 /**
  * This function checks the route once the loading is complete and then makes the call to fetch Movie Data
