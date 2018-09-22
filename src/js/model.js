@@ -46,3 +46,14 @@ export const fetchMoviePosters = async movieId => {
     console.log(error);
   }
 };
+
+
+export const fetchMovieCast = async movieId => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
+    const movieCast = await response.json();
+    return movieCast;
+  } catch(error) {
+    console.log(error);
+  }
+}

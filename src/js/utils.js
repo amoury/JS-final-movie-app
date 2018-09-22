@@ -5,3 +5,9 @@ export const cleanURL = url => {
 export const getIdFromURL = url => {
   return url.split("/")[url.split("/").length - 1];
 }
+
+export const cleanPathName = path_name => {
+  const regex = /(^\/|\.jpg\/)/gi;
+  const path = path_name.replace(regex, "");
+  return path.split('.')[0];
+}

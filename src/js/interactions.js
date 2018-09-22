@@ -1,6 +1,7 @@
 import { cleanURL, getIdFromURL } from './utils';
 import { loadMovies, getMoviePage } from './views';
-// import { fetchMovieById } from './model';
+
+
 /**
  * Function reponsible for Active Tabs Underline
  */
@@ -14,6 +15,9 @@ const toggleMenu = () => {
 };
 
 
+/**
+ * Function reponsible for Toggling Tabs
+ */
 const updateNav = () => {
   const { origin, href } = window.location;
   const navItems = document.querySelectorAll('.visibleSinglePage');
@@ -31,7 +35,10 @@ const updateNav = () => {
 
 
 
-
+/**
+ * Function to handle routing
+ * @param {string} id 
+ */
 const changePage = (id) => {
   if(id) {
     history.pushState(null, null, `${window.location.origin}/${id}`)
@@ -49,7 +56,6 @@ const changePage = (id) => {
 const handleSlideLine = () => {
   const slideLine = document.getElementById("slide_line");
   const activeItem = document.querySelector('.active');
-  console.log(activeItem);
   const ItemBounds = activeItem.getBoundingClientRect();
   
   slideLine.style.width = `${ItemBounds.width}px`;
@@ -73,6 +79,7 @@ const handleTabClick = () => {
         changePage();
         break;
       case "#tab_two":
+        handleTabContent(href);
       case "#tab_three" :
         handleTabContent(href);
       default:
@@ -108,14 +115,11 @@ const handleTabContent = (tabId) => {
     contentTab.classList.remove('display_tab');
   }
   activeTab.classList.add('display_tab')
-
-
 }
 
 /**
  * This function checks the route once the loading is complete and then makes the call to fetch Movie Data
  */
-
 const getInitialContent = () =>  {
   const { origin, href } = window.location;
   
@@ -130,15 +134,25 @@ const getInitialContent = () =>  {
 
 export const handleMovieClick = () => {
   const moviePoster = document.querySelectorAll(".movie");
+
   moviePoster.forEach(movie => {
-    movie.addEventListener('click', event => {
-      const { dataset, alt } = event.target;
-      const movieDetails = { title: dataset.title, id: alt};
-      getMoviePage(movieDetails);
-      changePage(alt);
+    movie.addEventListener('click', ({target}) => {
+      getMoviePage(target.alt);
+      changePage(target.alt);
     })
   })
 }
+
+
+export const handlePosterClick = () => {
+  const posters = document.querySelectorAll('.poster');
+
+  posters.forEach( poster => {
+    poster.addEventListener('click', event => {
+      console.log(event);
+    })
+  })
+};
   
 export const init = () => {
   toggleMenu();
