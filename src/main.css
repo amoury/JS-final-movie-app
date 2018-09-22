@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================================
+Header
+============================================ */
+
+header {
+  background: #a31860; 
+  padding: 10px 15px;
+  display: flex;
+}
+
+div.movie_details_box {
+  flex-grow: 1;
+  align-items: center;
+}
+
+h1.movie_title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+span.movie_metadata_type {
+  border: 1px solid #fff;
+  padding: 0 5px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+span.movie_metadata {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.dropdown_box {
+  position: relative;
+  margin-right: 10px;
+}
+
+div.dots_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+div.dot {
+  background: #fff;
+  height: 5px;
+  width: 5px;
+  margin: 2px;
+  border-radius: 50%;
+}
+
+.dropdown_menu {
+  background: #fff;
+  position: absolute;
+  right: 0;
+  top: 60%;
+  padding: 10px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 200;
+}
+
+.dropdown_menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown_menu > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown_menu ul li {
+  padding: 10px 0;
+}
+
+/* =========================================
+Navigation
+============================================ */
+
+nav {
+  background: #891250;
+  position: sticky;
+  top: 0;
+  display: flex;
+  z-index: 100;
+}
+
+ul.tabs {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  padding: 20px 15px;
+  position: relative;
+}
+
+#slide_line {
+  position: absolute;
+  bottom: 1px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+li.tabs_item {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 20px;
+  font-size: 0.9em;
+  letter-spacing: 0.08em;
+  position: relative;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+li.tabs_item > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li.tabs_item:first-child {
+  margin-left: 0;
+}
+
+.visibleSinglePage.hide,
+.visibleHomePage.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+
+/* =========================================
+POSTER GALLERY
+============================================ */
+
+#poster_gallery {
+  display: flex;
+  overflow-x: scroll;
+  padding-bottom: 10px;
+}
+
+.poster {
+  margin: 5px 3px;
+  max-width: 200px;
+  min-width: 120px;
+}
+
+.img-responsive {
+  max-width: 100%;
+  -webkit-box-shadow: 3px 10px 37px -18px rgba(0,0,0,0.54);
+  -moz-box-shadow: 3px 10px 37px -18px rgba(0,0,0,0.54);
+  box-shadow: 3px 10px 37px -18px rgba(0,0,0,0.54);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+/* =========================================
+MOVIE DETAILS CARD
+============================================ */
+
+.movie_details_card {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  margin: 0 10px 50px 10px;
+
+}
+
+.movie_ratings {
+  display: flex;
+  /* border-bottom: 1px solid lightgray; */
+  flex-wrap: wrap;
+}
+
+.rating {
+  min-width: 50%;
+  padding: 0 10px;
+  border-bottom: 0.5px solid lightgray;
+  flex-grow: 1;
+}
+
+.rating:first-child {
+  border-right: 1px solid lightgray;
+}
+
+.rating_score {
+  margin-bottom: 0;
+  font-size: 1.2em;
+}
+
+.rating_source {
+  margin-top: 3px;
+}
+
+.rating_source > a {
+  text-decoration: none;
+}
+
+.movie_google_data {
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+}
+
+.movie_description {
+  padding: 10px;
+  font-size: 0.9em;
+  border-bottom: 1px solid lightgray;
+}
+
+.movie_additional_details_switch {
+  padding: 0 10px;
+  text-align: center;
+}
+
+.additional_details_toggle {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: blue;
+  font-weight: 700;
+}
+
+
+footer {
+  min-height: 2000px;
+}
+
+
+/* =========================================
+POPULAR MOVIES
+============================================ */
+
+.popular_movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie {
+  max-width: 150px;
+  margin: 10px;
+  cursor: pointer;
+}

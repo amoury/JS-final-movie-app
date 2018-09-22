@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Namshi Movie App</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+
+  <header>
+    <div class="movie_details_box">
+      <h1 id="movie_title" class="movie_title">Movie App</h1>
+    </div>
+
+    <div class="dropdown_box">
+      <div class="dots_menu" id="dots_menu">
+        <div class="dot top"></div>
+        <div class="dot center"></div>
+        <div class="dot bottom"></div>
+      </div>
+
+      <div class="dropdown_menu">
+        <ul>
+          <li>Share</li>
+          <li>Send Feedback</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+
+  <nav>
+    <ul class="tabs">
+      <li class="tabs_item visibleHomePage">
+        <a href="#tab_one">
+          Popular Movies
+        </a>
+      </li>
+      <li class="tabs_item visibleSinglePage">
+        <a href="#tab_two" class="active">
+          Overview
+        </a>
+      </li>
+      <li class="tabs_item visibleSinglePage">
+        <a href="#tab_three">
+          Cast
+        </a>
+      </li>
+    </ul>
+    <span id="slide_line" class="visibleSinglePage"></span>
+  </nav>
+
+
+  <!-- Gallery -->
+
+  <main>
+    <section id="tab_one">
+      <div class="loader">
+        <h1>Loading...</h1>
+      </div>
+    </section>
+
+    <section id="tab_two">
+      <h1>single movie</h1>
+    </section>
+
+    <section id="tab_three">
+      <h3>Cast</h3>
+    </section>
+  </main>
+
+
+  <footer>
+  </footer>
+</body>
+
+</html>
