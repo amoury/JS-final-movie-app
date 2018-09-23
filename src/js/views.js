@@ -31,8 +31,8 @@ const imgURL = "https://image.tmdb.org/t/p/w500";
  * Handles getting the Movies from Model
  */
 export const loadMovies = async () => {
+  const tabOne = gid("tab_one");
   const movies = await fetchTopMovies();
-  const tabOne = document.getElementById("tab_one");
 
   const renderMovies = movies => {
     let movieCards = ``;
@@ -55,11 +55,10 @@ export const loadMovies = async () => {
  * @param {Object} moviePosters 
  */
 export const renderMoviePage = (movieData, moviePosters) => {
-  const singleMovieTab = document.getElementById("tab_two");
-  const popularMoviesTab = document.getElementById("tab_one");
-
-  popularMoviesTab.classList.remove("display_tab");
-  singleMovieTab.classList.add("display_tab");
+  const singleMovieTab = gid("tab_two");
+  const popularMoviesTab = gid("tab_one");
+  removeClass(popularMoviesTab, "display_tab");
+  addClass(singleMovieTab, "display_tab");
 
   singleMovieTab.innerHTML = singleMovieTemplate(movieData, moviePosters);
   handlePosterClick();
@@ -71,7 +70,7 @@ export const renderMoviePage = (movieData, moviePosters) => {
  * @param {Object} selectedMovieCast 
  */
 const renderMovieCast = selectedMovieCast => {
-  const castCards = document.getElementById("cast_cards");
+  const castCards = gid("cast_cards");
   castCards.innerHTML = castCardsTemplate(selectedMovieCast);
   handleCastClick();
 };
@@ -100,18 +99,18 @@ export const getMoviePage = async movieId => {
  * @param {String} castId 
  */
 export const getCastPage = async castId => {
-  const castContent = document.getElementById("cast_content");
+  const castContent = gid("cast_content");
 
   const getCastData = await fetchCastDetails(castId);
   castContent.innerHTML = castPageTemplate(getCastData);
   handleCastImageClick();
 };
 
-
+// getCastPage();
 /**
  * Function incharge of removing the cast data when User clicks Close Single Cast Page
  */
 export const removeCastData = () => {
-  const castContent = document.getElementById("cast_content");
+  const castContent = gid("cast_content");
   castContent.innerHTML = insertOriginalTemplate();
 };

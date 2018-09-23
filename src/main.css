@@ -317,59 +317,54 @@ CAST TAB
 
 #cast_single_page {
   position: fixed;
-  width: 95vw; 
-  height: 0; 
+  width: 100vw; 
+  height: 0; /* Make it back to 0 */ 
   background: #fff;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 500;
   transition: height 0.5s ease-out;
-  border-radius: 10px;
   overflow: scroll;
 }
 
 #cast_single_page.show_cast {
-  height: 98vh;
+  height: 100vh;
 }
 
 #close_page_btn,
 .close_btn {
   position: absolute;
-  top: 5%;
+  top: 3%;
   right: 2%;
   cursor: pointer;
   z-index: 999;
-  border: 2px solid #000;
-  color: #000;
-  padding: 10px 15px;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 8px 12px;
   font-size: 1.3em;
   border-radius: 50%;
 }
 
 #cast_page_head {
-  position: relative;
+  background: #A3260C;
 }
 
 .cast_header {
   min-height: 50vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.2;
+  position: relative;
+  background: #511306;
 }
 
-.cast_profile_image {
-  max-width: 250px;
+
+
+.cast_gallery {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 50%;
-  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-sizing: border-box;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
 }
-
 
 .image_box {
   max-width: 100%;
@@ -381,12 +376,23 @@ CAST TAB
   max-width: 100%;
 }
 
-.cast_name {
-  text-align: center;
+.cast_name_box {
+  /* text-align: center; */
+  color: #fff;
   font-size: 0.8em !important;
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  background: #A3260C;
+  padding: 20px;
+
+}
+
+.cast_name {
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  margin-top: -20px;
 }
 
 .cast_cards {
@@ -399,7 +405,7 @@ CAST TAB
 }
 
 .cast_biography {
-  margin: 50vh 20px 20px;
+  margin: 20px 20px 20px;
   padding: 10px 20px 20px;
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -408,10 +414,17 @@ CAST TAB
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.cast_image_box,
-.cast_gallery_image {
+.cast_image_box {
   max-height: 150px;
   min-height: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* width: 33.33%; */
+}
+
+.cast_gallery_image {
+  width: 33.33%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -431,11 +444,6 @@ CAST TAB
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.cast_name {
-  background: #fff;
-  padding: 20px;
-  margin-top: -20px;
-}
 
 .cast_image {
   max-width: 100%;

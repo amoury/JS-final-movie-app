@@ -98,8 +98,8 @@ const renderPosters = moviePosters => {
 export const updateHeaderTemplate = movieData => {
   const { Title, Released, Runtime, Genre, Rated } = movieData;
 
-  document.getElementById("movie_title").innerText = Title;
-  document.querySelector(".movie_details_box").innerHTML += `
+  gid("movie_title").innerText = Title;
+  qs(".movie_details_box").innerHTML += `
       <span class="movie_metadata">
         <span class="movie_metadata_type">
           Rated ${Rated}
@@ -118,9 +118,7 @@ export const updateHeaderTemplate = movieData => {
 export const castCardsTemplate = castData => {
   let castContent = ``;
   let image = ``;
-  // const imgURL = "https://image.tmdb.org/t/p/w500";
   
-
   castData.cast.forEach( member => {
     
     if(member.profile_path !== null) {
@@ -169,32 +167,50 @@ export const castPageTemplate = ({castData, castImages}) => {
 
   let html = `
       <div id="cast_page_head">
-        <div class="cast_header" style="background-image: url(${imgURL}${profile_path})">
+
+        <nav style="background: #A3260C">
+          <ul class="tabs">
+            <li class="tabs_item">
+              <a href="#tab_one" class="active">
+                Overview
+              </a>
+            </li>
+            
+            <li class="tabs_item">
+              <a href="#tab_two" class="">
+                Movies
+              </a>
+            </li>
+            
+          </ul>
+          <span id="slide_line" class=""></span>
+        </nav>
+
+
+
+        <div class="cast_header" style="background: darkred">
+          <div class="cast_gallery">
+            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
+            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
+            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
+          </div>
+        </div>
+        
+        <div class="cast_name_box">
+          <h1>${name}</h1>
+          <p>${birthday}</p>
         </div>
 
-        <div class="cast_profile_image">
-          <div class="image_box">
-            <img src="${imgURL}${profile_path}" />
-          </div>
-          <div class="cast_name">
-            <h1>${name}</h1>
-            <p>${birthday}</p>
-          </div>
-        </div>
       </div>
+        
+
+       
 
       <div class="cast_biography">
-      ${ !biography || biography === null ? 
-          `<div><h2>No Biography Available</h2></div>` : 
-          `<h2>Biography</h2>
-        ${shortenString(biography, 50)}`
-      }
-      
+        ${!biography || biography === null ? `<div><h2>No Biography Available</h2></div>` : `<h2>Biography</h2>
+        ${shortenString(biography, 50)}`}
       </div>
 
-      <div class="cast_member_gallery">
-        ${renderImages(castImages)}
-      </div>
   `;
   return html;
 }

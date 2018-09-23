@@ -88,6 +88,7 @@ export const fetchMovieCast = async movieId => {
  * @param {String} personId 
  */
 export const fetchCastDetails = async personId => {
+  personId = "192";
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=en-US`);
     const images = await fetch(`https://api.themoviedb.org/3/person/${personId}/images?api_key=${API_KEY}`);

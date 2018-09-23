@@ -2,16 +2,17 @@ import { cleanURL, getIdFromURL } from './utils';
 import { loadMovies, getMoviePage, getCastPage, removeCastData } from './views';
 
 
+
+
+
 /**
- * Function reponsible for Active Tabs Underline
+ * Handles Active Tabs Underline 
  */
 const toggleMenu = () => {
-  const menuBtn = document.getElementById("dots_menu");
-  const menu = document.querySelector(".dropdown_menu");
+  const menuBtn = gid("dots_menu"),
+        menu = qs(".dropdown_menu");
   
-  menuBtn.addEventListener("click", () => {
-    menu.classList.toggle("open");
-  });
+  $on(menuBtn, "click", () => menu.classList.toggle("open"));
 };
 
 
@@ -19,8 +20,8 @@ const toggleMenu = () => {
  * Function reponsible for Toggling Tabs
  */
 const updateNav = () => {
-  const { origin, href } = window.location;
-  const navItems = document.querySelectorAll('.visibleSinglePage');
+  const navItems = qsa('.visibleSinglePage'),
+        { origin, href } = window.location;
 
   if (origin === cleanURL(href)) {
     navItems.forEach( item => {
@@ -54,9 +55,9 @@ const changePage = (id) => {
  * Handles the Slideline under the tabs
  */
 const handleSlideLine = () => {
-  const slideLine = document.getElementById("slide_line");
-  const activeItem = document.querySelector('.active');
-  const ItemBounds = activeItem.getBoundingClientRect();
+  const slideLine = gid("slide_line"),
+        activeItem = qs(".active"),
+        ItemBounds = activeItem.getBoundingClientRect()
   
   slideLine.style.width = `${ItemBounds.width}px`;
   slideLine.style.left = `${ItemBounds.left}px`;
@@ -68,13 +69,13 @@ const handleSlideLine = () => {
  * @param {String} tabId 
  */
 const handleTabContent = tabId => {
-  const contentTabs = document.querySelectorAll(".content_tab");
-  const activeTab = document.querySelector(tabId);
+  const contentTabs = qsa(".content_tab"),
+        activeTab = qs(tabId);
 
   for (let contentTab of contentTabs) {
-    contentTab.classList.remove("display_tab");
+    removeClass(contentTab, "display_tab")
   }
-  activeTab.classList.add("display_tab");
+  addClass(activeTab, "display_tab");
 };
   
 
@@ -89,9 +90,9 @@ const toggleTabs = href => {
       changePage();
       break;
     case "#tab_two":
-      handleTabContent(href);
     case "#tab_three" :
       handleTabContent(href);
+      break;
     default:
       break;
   }
@@ -102,24 +103,21 @@ const toggleTabs = href => {
  * This function handles the Tab click event
  */
 const handleTabClick = () => {
-  const links = document.querySelectorAll('.tabs_item a');
+  const links = qsa('.tabs_item a');
 
   const setActiveClass = event => {
+    const href = event.target.hash;
     event.preventDefault();
     for (let item of links) {
-      item.classList.remove('active');
+      removeClass(item, 'active');
     }
-    event.target.classList.add('active');
-    const href = event.target.hash;
-    
+    addClass(event.target, 'active');
     toggleTabs(href);
     handleSlideLine();
   } 
 
 
-  links.forEach( item => {
-    item.addEventListener('click', setActiveClass);
-  });
+  links.forEach( item => $on(item, 'click', setActiveClass));
 
 }
 
@@ -241,7 +239,6 @@ export const handleCastClick = () => {
     })
   })
 }
-
 
 
 /**
