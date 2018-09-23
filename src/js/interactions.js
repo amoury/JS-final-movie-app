@@ -164,7 +164,6 @@ export const handlePosterClick = () => {
 
   posters.forEach( poster => {
     poster.addEventListener('click', event => {
-      console.log(event.target.currentSrc);
       handleImageExpand(event.target.currentSrc);
     })
   })
@@ -176,11 +175,11 @@ export const handlePosterClick = () => {
  * Expand Image when clicked on Cast Image Page Gallery
  */
 export const handleCastImageClick = () => {
-  const imageBox = document.querySelectorAll('.cast_image_box');
+  const imageBox = document.querySelectorAll('.cast_gallery_image');
 
   imageBox.forEach( box => {
     box.addEventListener('click', e => { 
-      console.log(e.target.dataset.href)
+      console.log(e);
       handleImageExpand(e.target.dataset.href);
     })
   });
@@ -206,8 +205,7 @@ const handleImageExpand = href => {
   lightBoxClose.addEventListener('click', () => {
     lightBox.classList.remove('open');
     body.classList.remove('noscroll');
-  })
-  console.log(href);
+  });
 }
 
 
@@ -235,7 +233,6 @@ const handleCastPage = () => {
  */
 export const handleCastClick = () => {
   const castCards = document.querySelectorAll('.cast_card');
-  // const castPage = document.getElementById('cast_single_page');
   
   castCards.forEach( card => {
     card.addEventListener('click', (e) => {

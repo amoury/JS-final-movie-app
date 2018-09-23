@@ -13,3 +13,8 @@ export const cleanPathName = path_name => {
   const path = path_name.replace(regex, "");
   return path.split('.')[0];
 }
+
+export const shortenString = (paragraph, characters) => {
+  console.log(paragraph.split(".").splice(20).join(" "));
+  return paragraph.split(". ").splice(0, 3).join(". "); 
+}

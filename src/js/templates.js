@@ -1,6 +1,13 @@
-import { cleanPathName } from './utils';
+import { cleanPathName, shortenString } from './utils';
 const imgURL = "https://image.tmdb.org/t/p/w500";
 
+
+
+/**
+ * Handles rendering of Movie Cards
+ * @param {Object} movie 
+ * @param {String} img 
+ */
 export const movieCardTemplate = (movie, img) => {
   let html = `
     <div class="movie">
@@ -32,9 +39,6 @@ export const singleMovieTemplate = (movieData, moviePosters) => {
         <div class="movie_description">
           <p>${movieData.Plot}</p>
           <p>Director - ${movieData.Director}</p>
-        </div>
-        <div class="movie_additional_details_switch">
-          <p class="additional_details_toggle">More about this movie</p>
         </div>
       </div>
     </section>
@@ -87,7 +91,10 @@ const renderPosters = moviePosters => {
 }
 
 
-
+/**
+ * Takes the Movie Data and updates the Header DOM
+ * @param {Object} movieData 
+ */
 export const updateHeaderTemplate = movieData => {
   const { Title, Released, Runtime, Genre, Rated } = movieData;
 
@@ -140,8 +147,11 @@ export const castCardsTemplate = castData => {
 
 
 
+/**
+ * Takes and Object with Cast Data and updates the DOM
+ * @param {Object} castData 
+ */
 export const castPageTemplate = ({castData, castImages}) => {
-
   const { profile_path, name, birthday, biography } = castData; 
 
   const renderImages = ({ profiles }) => {
@@ -149,7 +159,7 @@ export const castPageTemplate = ({castData, castImages}) => {
     profiles.forEach(profile => {
       cardGallery += `
         <div class="cast_card">
-          <div class="cast_image_box" style="background-image: url(${imgURL}${profile.file_path})" data-href="${imgURL}${profile.file_path}">
+          <div class="cast_gallery_image" style="background-image: url(${imgURL}${profile.file_path})" data-href="${imgURL}${profile.file_path}">
           </div>
         </div>
       `;
@@ -175,10 +185,11 @@ export const castPageTemplate = ({castData, castImages}) => {
 
       <div class="cast_biography">
       ${ !biography || biography === null ? 
-        `<div><h2>No Biography Available</h2></div>` :  
-        `<h2>Biography</h2>
-        ${biography}`
-      }   
+          `<div><h2>No Biography Available</h2></div>` : 
+          `<h2>Biography</h2>
+        ${shortenString(biography, 50)}`
+      }
+      
       </div>
 
       <div class="cast_member_gallery">
@@ -188,6 +199,10 @@ export const castPageTemplate = ({castData, castImages}) => {
   return html;
 }
 
+
+/**
+ * Function that renders the Loader when the user closes the Cast Page
+ */
 export const insertOriginalTemplate = () => {
   let html = `
      <div class="loader">
