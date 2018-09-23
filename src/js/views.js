@@ -6,7 +6,7 @@ import {
   fetchMovieCast,
   fetchCastDetails
 } from "./model";
-import { handleMovieClick, handlePosterClick, handleCastClick } from './interactions';
+import { handleMovieClick, handlePosterClick, handleCastClick, handleCastImageClick } from './interactions';
 import { movieCardTemplate, singleMovieTemplate, updateHeaderTemplate, castCardsTemplate, castPageTemplate, insertOriginalTemplate } from './templates';
 
 
@@ -72,8 +72,9 @@ export const getCastPage = async (castId) => {
 
   const getCastData = await fetchCastDetails(castId);
   castContent.innerHTML = castPageTemplate(getCastData);
-  console.log(getCastData);
+  handleCastImageClick();
 }
+
 
 export const removeCastData = () => {
   const castContent = document.getElementById('cast_content');

@@ -164,10 +164,51 @@ export const handlePosterClick = () => {
 
   posters.forEach( poster => {
     poster.addEventListener('click', event => {
-      console.log(event);
+      console.log(event.target.currentSrc);
+      handleImageExpand(event.target.currentSrc);
     })
   })
+
 };
+
+
+/**
+ * Expand Image when clicked on Cast Image Page Gallery
+ */
+export const handleCastImageClick = () => {
+  const imageBox = document.querySelectorAll('.cast_image_box');
+
+  imageBox.forEach( box => {
+    box.addEventListener('click', e => { 
+      console.log(e.target.dataset.href)
+      handleImageExpand(e.target.dataset.href);
+    })
+  });
+
+};
+
+
+/**
+ * Takes the image url and renders an image
+ * @param {String} href 
+ */
+const handleImageExpand = href => {
+  const lightBoxClose = document.querySelector(".lightbox_close_btn");
+  const lightBox = document.querySelector(".lightbox");
+  const imageWrapper = document.querySelector(".lightbox_image_wrapper");
+  const body = document.querySelector("body");
+
+  lightBox.classList.add("open");
+  imageWrapper.innerHTML = `<img src=${href} />`;
+  body.classList.add("noscroll");
+
+
+  lightBoxClose.addEventListener('click', () => {
+    lightBox.classList.remove('open');
+    body.classList.remove('noscroll');
+  })
+  console.log(href);
+}
 
 
 /**

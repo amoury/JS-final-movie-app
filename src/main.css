@@ -333,13 +333,15 @@ CAST TAB
   height: 98vh;
 }
 
-#close_page_btn {
+#close_page_btn,
+.close_btn {
   position: absolute;
   top: 5%;
   right: 2%;
   cursor: pointer;
   z-index: 999;
-  border: 2px solid black;
+  border: 2px solid teal;
+  color: teal;
   padding: 10px 15px;
   font-size: 1.3em;
   border-radius: 50%;
@@ -488,3 +490,42 @@ SPINNER
   }
 }
 
+
+
+/* =========================================
+SPINNER
+============================================ */
+
+.lightbox {
+  position: fixed;
+  top: -999px;
+  visibility: hidden;
+  left: 0;
+  opacity: 0;
+  width: 0;
+  top: -999px;
+  transition: all 0.3s ease-out;
+}
+
+
+
+.lightbox.open {
+  width: 100vw;
+  visibility: visible;
+  opacity: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 50vh;
+  z-index: 500;
+  top: 0;
+}
+
+.lightbox img {
+  max-width: 100%;
+}
+
+.lightbox_image_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

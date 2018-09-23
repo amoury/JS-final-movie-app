@@ -149,7 +149,7 @@ export const castPageTemplate = ({castData, castImages}) => {
     profiles.forEach(profile => {
       cardGallery += `
         <div class="cast_card">
-          <div class="cast_image_box" style="background-image: url(${imgURL}${profile.file_path})">
+          <div class="cast_image_box" style="background-image: url(${imgURL}${profile.file_path})" data-href="${imgURL}${profile.file_path}">
           </div>
         </div>
       `;

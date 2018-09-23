@@ -3,7 +3,9 @@ export const cleanURL = url => {
 };
 
 export const getIdFromURL = url => {
+  console.log(url);
   return url.split("/")[url.split("/").length - 1];
+
 }
 
 export const cleanPathName = path_name => {
