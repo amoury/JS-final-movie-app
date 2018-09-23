@@ -1,5 +1,5 @@
 import { cleanURL, getIdFromURL } from './utils';
-import { loadMovies, getMoviePage, getCastPage } from './views';
+import { loadMovies, getMoviePage, getCastPage, removeCastData } from './views';
 
 
 /**
@@ -37,7 +37,7 @@ const updateNav = () => {
 
 /**
  * Function to handle routing
- * @param {string} id 
+ * @param {String} id 
  */
 const changePage = (id) => {
   if(id) {
@@ -51,7 +51,7 @@ const changePage = (id) => {
 
 
 /**
- * This function handles the Slideline under the tabs
+ * Handles the Slideline under the tabs
  */
 const handleSlideLine = () => {
   const slideLine = document.getElementById("slide_line");
@@ -61,42 +61,59 @@ const handleSlideLine = () => {
   slideLine.style.width = `${ItemBounds.width}px`;
   slideLine.style.left = `${ItemBounds.left}px`;
 }
-  
-
-
 
 
 /**
- * This function handles the tab click event
+ * Function Responsible for Content Tabs
+ * @param {String} tabId 
+ */
+const handleTabContent = tabId => {
+  const contentTabs = document.querySelectorAll(".content_tab");
+  const activeTab = document.querySelector(tabId);
+
+  for (let contentTab of contentTabs) {
+    contentTab.classList.remove("display_tab");
+  }
+  activeTab.classList.add("display_tab");
+};
+  
+
+/**
+ * Function that handles Tab Toggling
+ * @param {String} href 
+ */
+const toggleTabs = href => {
+  switch (href) {
+    case "#tab_one":
+      handleTabContent(href);
+      changePage();
+      break;
+    case "#tab_two":
+      handleTabContent(href);
+    case "#tab_three" :
+      handleTabContent(href);
+    default:
+      break;
+  }
+}
+
+
+/**
+ * This function handles the Tab click event
  */
 const handleTabClick = () => {
   const links = document.querySelectorAll('.tabs_item a');
 
-  const toggleTabs = href => {
-    switch (href) {
-      case "#tab_one":
-        handleTabContent(href);
-        changePage();
-        break;
-      case "#tab_two":
-        handleTabContent(href);
-      case "#tab_three" :
-        handleTabContent(href);
-      default:
-        break;
-    }
-  }
-  
   const setActiveClass = event => {
     event.preventDefault();
     for (let item of links) {
       item.classList.remove('active');
     }
     event.target.classList.add('active');
-    handleSlideLine();
     const href = event.target.hash;
-
+    
     toggleTabs(href);
+    handleSlideLine();
   } 
 
 
@@ -107,15 +124,7 @@ const handleTabClick = () => {
 }
 
 
-const handleTabContent = (tabId) => {
-  const contentTabs = document.querySelectorAll('.content_tab');
-  const activeTab = document.querySelector(tabId);
 
-  for (let contentTab of contentTabs) {
-    contentTab.classList.remove('display_tab');
-  }
-  activeTab.classList.add('display_tab')
-}
 
 /**
  * This function checks the route once the loading is complete and then makes the call to fetch Movie Data
@@ -132,9 +141,12 @@ const getInitialContent = () =>  {
 }
 
 
+
+/**
+ * Function to Handle the click on Movie Posters on HomePage
+ */
 export const handleMovieClick = () => {
   const moviePoster = document.querySelectorAll(".movie");
-
   moviePoster.forEach(movie => {
     movie.addEventListener('click', ({target}) => {
       getMoviePage(target.alt);
@@ -144,6 +156,9 @@ export const handleMovieClick = () => {
 }
 
 
+/**
+ * Expand Image when clicked on Overview Page
+ */
 export const handlePosterClick = () => {
   const posters = document.querySelectorAll('.poster');
 
@@ -154,20 +169,32 @@ export const handlePosterClick = () => {
   })
 };
 
+
+/**
+ * Function Responsible for toggling Cast Page
+ */
 const handleCastPage = () => {
   const closeBtn = document.getElementById("close_page_btn");
   const castPage = document.getElementById("cast_single_page");
+  const body = document.querySelector("body");
 
   castPage.classList.add('show_cast');
-  
+  body.classList.add('noscroll');
+
   closeBtn.addEventListener('click', () => {
     castPage.classList.remove('show_cast');
+    body.classList.remove('noscroll');
+    removeCastData();
   })
 }
 
+
+/**
+ * Function to Handle Click Event on Cast Cards
+ */
 export const handleCastClick = () => {
   const castCards = document.querySelectorAll('.cast_card');
-  const castPage = document.getElementById('cast_single_page');
+  // const castPage = document.getElementById('cast_single_page');
   
   castCards.forEach( card => {
     card.addEventListener('click', (e) => {
@@ -178,6 +205,10 @@ export const handleCastClick = () => {
 }
 
 
+
+/**
+ * Functions to be called when App loads
+ */
 export const init = () => {
   toggleMenu();
   handleSlideLine();

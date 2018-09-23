@@ -8,5 +8,3 @@ window.addEventListener("popstate", () => {
   console.log("state popped");
   window.location.reload();
 });
-
-

@@ -7,7 +7,7 @@ import {
   fetchCastDetails
 } from "./model";
 import { handleMovieClick, handlePosterClick, handleCastClick } from './interactions';
-import { movieCardTemplate, singleMovieTemplate, updateHeaderTemplate, castCardsTemplate } from './templates';
+import { movieCardTemplate, singleMovieTemplate, updateHeaderTemplate, castCardsTemplate, castPageTemplate, insertOriginalTemplate } from './templates';
 
 
 const imgURL = "https://image.tmdb.org/t/p/w500";
@@ -28,8 +28,6 @@ export const loadMovies = async () => {
   
   tabOne.innerHTML = `<div id="popular_movies" class="popular_movies">${renderMovies(movies)}</div>`;
   handleMovieClick();
-  
-  
 }
 
 
@@ -70,8 +68,14 @@ export const getMoviePage = async (movieId) => {
 
 
 export const getCastPage = async (castId) => {
+  const castContent = document.getElementById('cast_content');
+
   const getCastData = await fetchCastDetails(castId);
+  castContent.innerHTML = castPageTemplate(getCastData);
   console.log(getCastData);
 }
 
-
+export const removeCastData = () => {
+  const castContent = document.getElementById('cast_content');
+  castContent.innerHTML = insertOriginalTemplate();
+}

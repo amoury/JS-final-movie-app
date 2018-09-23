@@ -1,4 +1,5 @@
 import { cleanPathName } from './utils';
+const imgURL = "https://image.tmdb.org/t/p/w500";
 
 export const movieCardTemplate = (movie, img) => {
   let html = `
@@ -110,7 +111,7 @@ export const updateHeaderTemplate = movieData => {
 export const castCardsTemplate = castData => {
   let castContent = ``;
   let image = ``;
-  const imgURL = "https://image.tmdb.org/t/p/w500";
+  // const imgURL = "https://image.tmdb.org/t/p/w500";
   
 
   castData.cast.forEach( member => {
@@ -135,4 +136,70 @@ export const castCardsTemplate = castData => {
 
   return castContent;
 
+}
+
+
+
+export const castPageTemplate = ({castData, castImages}) => {
+
+  const { profile_path, name, birthday, biography } = castData; 
+
+  const renderImages = ({ profiles }) => {
+    let cardGallery = ``;
+    profiles.forEach(profile => {
+      cardGallery += `
+        <div class="cast_card">
+          <div class="cast_image_box" style="background-image: url(${imgURL}${profile.file_path})">
+          </div>
+        </div>
+      `;
+    })
+    return cardGallery;
+  }
+
+  let html = `
+      <div id="cast_page_head">
+        <div class="cast_header" style="background-image: url(${imgURL}${profile_path})">
+        </div>
+
+        <div class="cast_profile_image">
+          <div class="image_box">
+            <img src="${imgURL}${profile_path}" />
+          </div>
+          <div class="cast_name">
+            <h1>${name}</h1>
+            <p>${birthday}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cast_biography">
+      ${ !biography || biography === null ? 
+        `<div><h2>No Biography Available</h2></div>` :  
+        `<h2>Biography</h2>
+        ${biography}`
+      }   
+      </div>
+
+      <div class="cast_member_gallery">
+        ${renderImages(castImages)}
+      </div>
+  `;
+  return html;
+}
+
+export const insertOriginalTemplate = () => {
+  let html = `
+     <div class="loader">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  return html;
 }

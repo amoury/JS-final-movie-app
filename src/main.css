@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+body.noscroll {
+  overflow: hidden;
+}
+
 .loader {
   position: absolute;
   top: 50%;
@@ -95,7 +99,25 @@ div.dot {
 }
 
 .dropdown_menu ul li {
-  padding: 10px 0;
+  cursor: pointer;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dropdown_menu ul li:hover {
+  background: lightgray;
+}
+
+.fas.fa-share-alt {
+  padding-right: 10px;
+}
+
+#feedback_icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 /* =========================================
@@ -104,6 +126,7 @@ Navigation
 
 nav {
   background: #891250;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   display: flex;
@@ -114,6 +137,7 @@ ul.tabs {
   margin: 0;
   list-style: none;
   display: flex;
+  align-items: center;
   padding: 20px 15px;
   position: relative;
 }
@@ -248,9 +272,7 @@ MOVIE DETAILS CARD
 }
 
 
-/* footer {
-  min-height: 2000px;
-} */
+
 
 
 /* =========================================
@@ -296,7 +318,7 @@ CAST TAB
 #cast_single_page {
   position: fixed;
   width: 95vw;
-  height: 0vh; /* change this back to 0 */
+  height: 0vh;
   background: #fff;
   bottom: 0;
   left: 50%;
@@ -317,13 +339,21 @@ CAST TAB
   right: 2%;
   cursor: pointer;
   z-index: 999;
+  border: 2px solid black;
+  padding: 10px 15px;
+  font-size: 1.3em;
+  border-radius: 50%;
+}
+
+#cast_page_head {
+  position: relative;
 }
 
 .cast_header {
   min-height: 50vh;
-  background-size: 'cover';
-  background-position: 'center';
-  background-repeat: 'no-repeat';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.2;
 }
 
@@ -332,13 +362,20 @@ CAST TAB
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: -10%;
+  top: 50%;
   -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-.cast_profile_image > img {
+
+.image_box {
+  max-width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.image_box > img {
   max-width: 100%;
 }
 
@@ -360,8 +397,13 @@ CAST TAB
 }
 
 .cast_biography {
-  margin-top: 50vh;
-  padding: 0 20px;
+  margin: 50vh 20px 20px;
+  padding: 10px 20px 20px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .cast_image_box {
@@ -380,6 +422,7 @@ CAST TAB
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  cursor: pointer;
   -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -395,6 +438,15 @@ CAST TAB
   max-width: 100%;
 }
 
+.cast_member_gallery {
+  display: flex;
+  overflow: scroll;
+  margin: 10px 20px;
+}
+
+.cast_member_gallery .cast_card {
+  max-width: 250px;
+}
 
 /* =========================================
 SPINNER

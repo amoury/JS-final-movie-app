@@ -2,6 +2,10 @@ const API_KEY = "863069699dead81459a0f4320dbbfe58";
 const baseURL = "https://api.themoviedb.org/3/movie";
 const topRatedMovies = `${baseURL}/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
+
+/**
+ * Returns the list of Top Movies
+ */
 export const fetchTopMovies = async () => {
   try {
     const response = await fetch(topRatedMovies);
@@ -12,6 +16,11 @@ export const fetchTopMovies = async () => {
   }
 }
 
+
+/**
+ * Returns the Movie Details based on the Title
+ * @param {String} movieTitle 
+ */
 export const fetchMovieByTitle = async (movieTitle) => {
   try {
     const response = await fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=22dd030c`);
@@ -23,6 +32,10 @@ export const fetchMovieByTitle = async (movieTitle) => {
 }
 
 
+/**
+ * Returns The Movie Details based on ID
+ * @param {String} id 
+ */
 export const fetchMovieById = async id => {
   try {
     const response = await fetch(
@@ -35,6 +48,11 @@ export const fetchMovieById = async id => {
   }
 };
 
+
+/**
+ * Returns The Movie Images based on the ID
+ * @param {String} movieId 
+ */
 export const fetchMoviePosters = async movieId => {
   try {
     const response = await fetch(
@@ -48,6 +66,11 @@ export const fetchMoviePosters = async movieId => {
 };
 
 
+
+/**
+ * Returns The Movie Cast based on the Movie ID
+ * @param {String} movieId 
+ */
 export const fetchMovieCast = async movieId => {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
@@ -58,6 +81,12 @@ export const fetchMovieCast = async movieId => {
   }
 }
 
+
+
+/**
+ * Returns the Cast Member Details based on the Member's ID
+ * @param {String} personId 
+ */
 export const fetchCastDetails = async personId => {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=en-US`);
