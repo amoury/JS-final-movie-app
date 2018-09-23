@@ -1,5 +1,5 @@
 import { cleanURL, getIdFromURL } from './utils';
-import { loadMovies, getMoviePage } from './views';
+import { loadMovies, getMoviePage, getCastPage } from './views';
 
 
 /**
@@ -153,7 +153,31 @@ export const handlePosterClick = () => {
     })
   })
 };
+
+const handleCastPage = () => {
+  const closeBtn = document.getElementById("close_page_btn");
+  const castPage = document.getElementById("cast_single_page");
+
+  castPage.classList.add('show_cast');
   
+  closeBtn.addEventListener('click', () => {
+    castPage.classList.remove('show_cast');
+  })
+}
+
+export const handleCastClick = () => {
+  const castCards = document.querySelectorAll('.cast_card');
+  const castPage = document.getElementById('cast_single_page');
+  
+  castCards.forEach( card => {
+    card.addEventListener('click', (e) => {
+      getCastPage(e.target.dataset.member);
+      handleCastPage();
+    })
+  })
+}
+
+
 export const init = () => {
   toggleMenu();
   handleSlideLine();

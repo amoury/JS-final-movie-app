@@ -123,14 +123,15 @@ export const castCardsTemplate = castData => {
     
     castContent += `
       <div class="cast_card">
-        <div class="cast_image_box" style="background-image: url(${image})">
+        <div class="cast_image_box" style="background-image: url(${image})" data-member=${member.id}>
         </div>
-        <div class="cast_name">
+        <div class="cast_name" data-member=${member.id}>
           ${member.name}
         </div>
       </div>
     `;
   })
+
 
   return castContent;
 

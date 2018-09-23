@@ -57,3 +57,18 @@ export const fetchMovieCast = async movieId => {
     console.log(error);
   }
 }
+
+export const fetchCastDetails = async personId => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=en-US`);
+    const images = await fetch(`https://api.themoviedb.org/3/person/${personId}/images?api_key=${API_KEY}`);
+    
+    const castData = await response.json();
+    const castImages = await images.json();
+
+    return { castData, castImages };
+  } catch (error) {
+    console.log(error);
+  }
+}
+

@@ -3,9 +3,10 @@ import {
   fetchMovieByTitle,
   fetchMovieById,
   fetchMoviePosters,
-  fetchMovieCast
+  fetchMovieCast,
+  fetchCastDetails
 } from "./model";
-import { handleMovieClick, handlePosterClick } from './interactions';
+import { handleMovieClick, handlePosterClick, handleCastClick } from './interactions';
 import { movieCardTemplate, singleMovieTemplate, updateHeaderTemplate, castCardsTemplate } from './templates';
 
 
@@ -49,6 +50,7 @@ export const renderMoviePage = (movieData, moviePosters) => {
 const renderMovieCast = selectedMovieCast => {
   const castCards = document.getElementById('cast_cards');
   castCards.innerHTML = castCardsTemplate(selectedMovieCast);
+  handleCastClick();
 }
 
 
@@ -64,7 +66,12 @@ export const getMoviePage = async (movieId) => {
   renderMovieCast(selectedMovieCast);
   renderMoviePage(selectedMovieData, selectedMoviePosters);
   updateHeaderTemplate(selectedMovieData);
+}
 
+
+export const getCastPage = async (castId) => {
+  const getCastData = await fetchCastDetails(castId);
+  console.log(getCastData);
 }
 
 

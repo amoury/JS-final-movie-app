@@ -289,6 +289,66 @@ CONTENT TABS
 /* =========================================
 CAST TAB
 ============================================ */
+#tab_three {
+  position: relative;
+}
+
+#cast_single_page {
+  position: fixed;
+  width: 95vw;
+  height: 0vh; /* change this back to 0 */
+  background: #fff;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  transition: height 0.5s ease-out;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+#cast_single_page.show_cast {
+  height: 98vh;
+}
+
+#close_page_btn {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.cast_header {
+  min-height: 50vh;
+  background-size: 'cover';
+  background-position: 'center';
+  background-repeat: 'no-repeat';
+  opacity: 0.2;
+}
+
+.cast_profile_image {
+  max-width: 250px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -10%;
+  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.cast_profile_image > img {
+  max-width: 100%;
+}
+
+.cast_name {
+  text-align: center;
+  font-size: 0.8em !important;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
 .cast_cards {
   display: flex;
@@ -296,6 +356,12 @@ CAST TAB
   padding: 5px;
   width: 100%;
   justify-content: center;
+  position: relative;
+}
+
+.cast_biography {
+  margin-top: 50vh;
+  padding: 0 20px;
 }
 
 .cast_image_box {
@@ -369,3 +435,4 @@ SPINNER
     transform: rotate(360deg);
   }
 }
+
