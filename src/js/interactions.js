@@ -140,12 +140,12 @@ const getInitialContent = () =>  {
  * Function to Handle the click on Movie Posters on HomePage
  */
 export const handleMovieClick = () => {
-  const moviePoster = document.querySelectorAll(".movie");
+  const moviePoster = qsa(".movie");
   moviePoster.forEach(movie => {
-    movie.addEventListener('click', ({target}) => {
+    $on(movie, 'click', ({ target }) => {
       getMoviePage(target.alt);
       changePage(target.alt);
-    })
+    });
   })
 }
 
@@ -154,12 +154,10 @@ export const handleMovieClick = () => {
  * Expand Image when clicked on Overview Page
  */
 export const handlePosterClick = () => {
-  const posters = document.querySelectorAll('.poster');
+  const posters = qsa('.poster');
 
   posters.forEach( poster => {
-    poster.addEventListener('click', event => {
-      handleImageExpand(event.target.currentSrc);
-    })
+    $on(poster, 'click', event => handleImageExpand(event.target.currentSrc));
   })
 
 };
@@ -172,7 +170,7 @@ export const handleCastImageClick = () => {
   const imageBox = qsa('.cast_gallery_image');
 
   imageBox.forEach( box => {
-    box.addEventListener('click', e => handleImageExpand(e.target.dataset.href))
+    $on(box, "click", e => handleImageExpand(e.target.dataset.href));
   });
 
 };
@@ -183,19 +181,18 @@ export const handleCastImageClick = () => {
  * @param {String} href 
  */
 const handleImageExpand = href => {
-  const lightBoxClose = document.querySelector(".lightbox_close_btn");
-  const lightBox = document.querySelector(".lightbox");
-  const imageWrapper = document.querySelector(".lightbox_image_wrapper");
-  const body = document.querySelector("body");
+  const lightBoxClose = qs(".lightbox_close_btn");
+  const lightBox = qs(".lightbox");
+  const imageWrapper = qs(".lightbox_image_wrapper");
+  const body = qs("body");
 
-  lightBox.classList.add("open");
+  addClass(lightBox, 'open');
+  addClass(body, 'noscroll');
   imageWrapper.innerHTML = `<img src=${href} />`;
-  body.classList.add("noscroll");
 
-
-  lightBoxClose.addEventListener('click', () => {
-    lightBox.classList.remove('open');
-    body.classList.remove('noscroll');
+  $on(lightBoxClose, 'click', () => {
+    removeClass(lightBox, 'open');
+    removeClass(body, 'noscroll');
   });
 }
 
