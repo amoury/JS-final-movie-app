@@ -1,6 +1,6 @@
 const API_KEY = "863069699dead81459a0f4320dbbfe58";
-const baseURL = "https://api.themoviedb.org/3/movie";
-const topRatedMovies = `${baseURL}/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
+const movieBaseURL = "https://api.themoviedb.org/3/movie";
+const topRatedMovies = `${movieBaseURL}/top_rated?api_key=${API_KEY}&language=en-US&page=1`; 
 
 
 /**
@@ -38,9 +38,7 @@ export const fetchMovieByTitle = async (movieTitle) => {
  */
 export const fetchMovieById = async id => {
   try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
-    );
+    const response = await fetch(`${movieBaseURL}/${id}?api_key=${API_KEY}&language=en-US`);
     const json = await response.json();
     return json;
   } catch (error) {
@@ -56,7 +54,7 @@ export const fetchMovieById = async id => {
 export const fetchMoviePosters = async movieId => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${API_KEY}&language=en-US&include_image_language=en`
+      `${movieBaseURL}/${movieId}/images?api_key=${API_KEY}&language=en-US&include_image_language=en`
     );
     const moviePosters = await response.json();
     return moviePosters.posters;
@@ -73,7 +71,7 @@ export const fetchMoviePosters = async movieId => {
  */
 export const fetchMovieCast = async movieId => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
+    const response = await fetch(`${movieBaseURL}/${movieId}/credits?api_key=${API_KEY}`);
     const movieCast = await response.json();
     return movieCast;
   } catch(error) {
@@ -88,7 +86,6 @@ export const fetchMovieCast = async movieId => {
  * @param {String} personId 
  */
 export const fetchCastDetails = async personId => {
-  personId = "192";
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=en-US`);
     const images = await fetch(`https://api.themoviedb.org/3/person/${personId}/images?api_key=${API_KEY}`);

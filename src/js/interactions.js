@@ -24,13 +24,9 @@ const updateNav = () => {
         { origin, href } = window.location;
 
   if (origin === cleanURL(href)) {
-    navItems.forEach( item => {
-      item.classList.add('hide');
-    })
+    navItems.forEach( item => item.classList.add('hide'))
   } else {
-    navItems.forEach( item => {
-      item.classList.remove('hide');
-    })
+    navItems.forEach( item => item.classList.remove('hide'))
   }
 }
 
@@ -102,7 +98,7 @@ const toggleTabs = href => {
 /**
  * This function handles the Tab click event
  */
-const handleTabClick = () => {
+export const handleTabClick = () => {
   const links = qsa('.tabs_item a');
 
   const setActiveClass = event => {
@@ -173,13 +169,10 @@ export const handlePosterClick = () => {
  * Expand Image when clicked on Cast Image Page Gallery
  */
 export const handleCastImageClick = () => {
-  const imageBox = document.querySelectorAll('.cast_gallery_image');
+  const imageBox = qsa('.cast_gallery_image');
 
   imageBox.forEach( box => {
-    box.addEventListener('click', e => { 
-      console.log(e);
-      handleImageExpand(e.target.dataset.href);
-    })
+    box.addEventListener('click', e => handleImageExpand(e.target.dataset.href))
   });
 
 };
@@ -211,16 +204,16 @@ const handleImageExpand = href => {
  * Function Responsible for toggling Cast Page
  */
 const handleCastPage = () => {
-  const closeBtn = document.getElementById("close_page_btn");
-  const castPage = document.getElementById("cast_single_page");
-  const body = document.querySelector("body");
+  const closeBtn = gid("close_page_btn");
+  const castPage = gid("cast_single_page");
+  const body = qs("body");
 
-  castPage.classList.add('show_cast');
-  body.classList.add('noscroll');
+  addClass(castPage, 'show_cast');
+  addClass(body, 'noscroll');
 
-  closeBtn.addEventListener('click', () => {
-    castPage.classList.remove('show_cast');
-    body.classList.remove('noscroll');
+  $on(closeBtn, 'click', () => {
+    removeClass(castPage, 'show_cast');
+    removeClass(body, 'noscroll');
     removeCastData();
   })
 }
@@ -230,10 +223,10 @@ const handleCastPage = () => {
  * Function to Handle Click Event on Cast Cards
  */
 export const handleCastClick = () => {
-  const castCards = document.querySelectorAll('.cast_card');
+  const castCards = qsa('.cast_card');
   
   castCards.forEach( card => {
-    card.addEventListener('click', (e) => {
+    $on(card, 'click', (e) => {
       getCastPage(e.target.dataset.member);
       handleCastPage();
     })

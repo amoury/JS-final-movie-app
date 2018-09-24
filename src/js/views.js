@@ -6,12 +6,15 @@ import {
   fetchMovieCast,
   fetchCastDetails
 } from "./model";
+
 import {
   handleMovieClick,
   handlePosterClick,
   handleCastClick,
-  handleCastImageClick
+  handleCastImageClick,
+  handleTabClick
 } from "./interactions";
+
 import {
   movieCardTemplate,
   singleMovieTemplate,
@@ -103,10 +106,12 @@ export const getCastPage = async castId => {
 
   const getCastData = await fetchCastDetails(castId);
   castContent.innerHTML = castPageTemplate(getCastData);
+  handleTabClick();
   handleCastImageClick();
 };
 
-// getCastPage();
+
+
 /**
  * Function incharge of removing the cast data when User clicks Close Single Cast Page
  */

@@ -14,7 +14,6 @@ export const cleanPathName = path_name => {
   return path.split('.')[0];
 }
 
-export const shortenString = (paragraph, characters) => {
-  console.log(paragraph.split(".").splice(20).join(" "));
-  return paragraph.split(". ").splice(0, 3).join(". "); 
+export const shortenString = (paragraph, sentences) => {
+  return paragraph.split(". ").splice(0, sentences).join(". "); 
 }

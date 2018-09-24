@@ -150,18 +150,18 @@ export const castCardsTemplate = castData => {
  * @param {Object} castData 
  */
 export const castPageTemplate = ({castData, castImages}) => {
-  const { profile_path, name, birthday, biography } = castData; 
+  const { place_of_birth, name, birthday, biography } = castData; 
 
   const renderImages = ({ profiles }) => {
     let cardGallery = ``;
-    profiles.forEach(profile => {
-      cardGallery += `
-        <div class="cast_card">
-          <div class="cast_gallery_image" style="background-image: url(${imgURL}${profile.file_path})" data-href="${imgURL}${profile.file_path}">
+    for(let i = 0; i <= 2; i++) {
+      if(profiles[i]) {
+        cardGallery += `
+          <div class="cast_gallery_image" style="background-image: url(${imgURL}${profiles[i].file_path})" data-href="${imgURL}${profiles[i].file_path}"> 
           </div>
-        </div>
-      `;
-    })
+        `
+      }
+    }
     return cardGallery;
   }
 
@@ -171,13 +171,13 @@ export const castPageTemplate = ({castData, castImages}) => {
         <nav style="background: #A3260C">
           <ul class="tabs">
             <li class="tabs_item">
-              <a href="#tab_one" class="active">
+              <a href="#tab_four" class="active">
                 Overview
               </a>
             </li>
             
             <li class="tabs_item">
-              <a href="#tab_two" class="">
+              <a href="#tab_five" class="">
                 Movies
               </a>
             </li>
@@ -190,12 +190,14 @@ export const castPageTemplate = ({castData, castImages}) => {
 
         <div class="cast_header" style="background: darkred">
           <div class="cast_gallery">
-            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
-            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
-            <div class="cast_gallery_image" style="background-image: url(https://source.unsplash.com/random/800x600)"></div>
+            ${  castImages.profiles ? 
+                renderImages(castImages) :
+                null
+            }
           </div>
         </div>
         
+
         <div class="cast_name_box">
           <h1>${name}</h1>
           <p>${birthday}</p>
@@ -204,11 +206,13 @@ export const castPageTemplate = ({castData, castImages}) => {
       </div>
         
 
-       
 
       <div class="cast_biography">
         ${!biography || biography === null ? `<div><h2>No Biography Available</h2></div>` : `<h2>Biography</h2>
-        ${shortenString(biography, 50)}`}
+        <hr />
+        <p>${shortenString(biography, 5)}`}</p>
+        <p>Born: ${birthday}</p>
+        <p>Place of Birth: ${place_of_birth}</p>
       </div>
 
   `;
